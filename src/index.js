@@ -43,7 +43,7 @@ app.get('/', function (req, res) {
     res.render('index');
 });
 
-/**Para cualquier ruta que no exista en el sitio */
+/**Para cualquier ruta que no exista en el sitio, despues de validar las rutas anteriores */
 app.all('*', function (req, res, next) {
     res.send('<h1>Pagina no encontrada</h1>')
 });
