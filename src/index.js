@@ -8,7 +8,7 @@ const bodyParser = require('body-parser');
 const path = require('path');/*Necesario para la configuracion del view engine*/
 
 const usuariosDespacho = require('./rutas/despacho/usuarios');
-
+const juzgados = require('./rutas/despacho/juzgados');
 
 const app = express();
 app.use(bodyParser.json());
@@ -37,6 +37,7 @@ app.set('view engine', 'html');
 
 
 app.use('/API/despacho/usuarios', usuariosDespacho);
+app.use('/API/despacho/juzgados', juzgados);
 
 /**Para la pagina principal */
 app.get('/', function (req, res) {
