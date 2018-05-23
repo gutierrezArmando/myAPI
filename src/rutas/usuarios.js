@@ -1,5 +1,5 @@
 const express = require('express');
-const conection = require('../../../database/dbConfDespacho');
+const conection = require('../../database/dbConfDespacho');
 const app = express.Router();
 
 
@@ -13,6 +13,7 @@ app.get('/', function (req, res) {
         res.send("Error al buscar en base de datos");
     })
 });
+
 
 /*Para desplegar el usuario indicado*/
 app.get('/:username', function (req, res) {

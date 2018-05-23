@@ -1,6 +1,6 @@
 
 const express = require('express');
-const conection = require('../../../database/dbConfDespacho');
+const conection = require('../../database/dbConfDespacho');
 const app = express.Router();
 
 var url = require('url');

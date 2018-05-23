@@ -1,27 +1,31 @@
 const express = require('express');
-const conection = require('../../../database/dbConfDespacho');
+const conection = require('../../database/dbConfDespacho');
 const app = express.Router();
 
-var url = require('url');
+/*Para desplegar todos los usuarios*/
+app.get('/', function (req, res) {
+    conection.query('select * from partes', function (error, result, fields) {
+        if(error)
+            throw error;
+        return res.json(result);
+        //return res.json({error: false, data: result, message: 'Lista de usuarios'});
+        res.status(404);
+        res.send("Error al buscar en base de datos");
+    })
+});
 
-/*Para insertar un nuevo usuario*/
+/*Para insertar nueva parte*/
 app.get('/add', function (req, res) {
     //var operacion = req.body;
     var datos = req.query;
     console.log(datos);
-    strQuery = "CALL agregarExpediente(?,?,?,?,?,?,?,?);";
+    strQuery = "CALL agregarParte(?,?);";
 //    if(!nombre) {
   //      return res.status(400).send({error: true, message: 'Por favor ingrese un usuario'});
     //}
     var query = conection.query(strQuery,[
-        datos.numero,
-        parseInt(datos.anio),
-        datos.tipo,
-        datos.clave,
-        datos.materia,
-        datos.partido,
-        datos.juzgado,
-        datos.secretaria
+        datos.nombre,
+        datos.apellido
     ], function (error, results, fields) {
         if(error)
             throw error;
@@ -33,5 +37,4 @@ app.get('/add', function (req, res) {
     });
 
 });
-
 module.exports = app;
