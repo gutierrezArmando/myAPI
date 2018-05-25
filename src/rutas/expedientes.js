@@ -5,9 +5,10 @@ const app = express.Router();
 var url = require('url');
 
 /*Para insertar un nuevo expediente*/
-app.get('/add', function (req, res) {
+app.post('/add', function (req, res) {
     //var operacion = req.body;
-    var datos = req.query;
+    //var datos = req.query;
+    var datos = req.body;
     console.log(datos);
     strQuery = "CALL agregarExpediente(?,?,?,?,?,?,?,?);";
 //    if(!nombre) {
@@ -15,11 +16,11 @@ app.get('/add', function (req, res) {
     //}
     var query = conection.query(strQuery,[
         datos.numero,
-        parseInt(datos.anio),
-        datos.tipo,
-        datos.clave,
-        datos.materia,
-        datos.partido,
+        datos.anio,
+        datos.tipoJuicio,
+        datos.clavebusqueda,
+        datos.materiaCivil,
+        datos.partidoJudicial,
         datos.juzgado,
         datos.secretaria
     ], function (error, results, fields) {

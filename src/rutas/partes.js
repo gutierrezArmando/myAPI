@@ -15,9 +15,9 @@ app.get('/', function (req, res) {
 });
 
 /*Para insertar nueva parte*/
-app.get('/add', function (req, res) {
-    //var operacion = req.body;
-    var datos = req.query;
+app.post('/add', function (req, res) {
+    var datos = req.body;
+    //var datos = req.query;
     console.log(datos);
     strQuery = "CALL agregarParte(?,?);";
 //    if(!nombre) {
